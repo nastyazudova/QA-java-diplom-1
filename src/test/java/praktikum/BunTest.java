@@ -2,8 +2,6 @@ package praktikum;
 import org.junit.runners.Parameterized;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
@@ -19,12 +17,12 @@ public class BunTest {
     @Parameterized.Parameters
     public static Object[][] Data() {
         return new Object[][]{
-                {"op", 33},
-                {"pp", 55}
+                {"Флюоресцентная булка R2-D3", 988},
+                {"Краторная булка N-200i", 1255}
         };
     }
 
-    @Test
+    @Test//проверка верного присваивания имени
     public void getNameTest() {
         Bun bun = new Bun(name, price);
         String actual = bun.getName();
@@ -32,7 +30,7 @@ public class BunTest {
         assertEquals(expected, actual);
     }
 
-    @Test
+    @Test//проверка верного присваивания цены
     public void getPriceTest() {
         Bun bun = new Bun(name, price);
         float actual = bun.getPrice();
