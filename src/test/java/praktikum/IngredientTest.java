@@ -19,7 +19,7 @@ public class IngredientTest {
     }
 
     @Parameterized.Parameters
-    public static Object[][] Data() {
+    public static Object[][] ingredientsData() {
         return new Object[][]{
                 {IngredientType.SAUCE, "Соус Spicy-X", 90},
                 {IngredientType.SAUCE, "Соус традиционный галактический", 15},

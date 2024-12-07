@@ -15,7 +15,7 @@ public class BunTest {
     }
 
     @Parameterized.Parameters
-    public static Object[][] Data() {
+    public static Object[][] bunsData() {
         return new Object[][]{
                 {"Флюоресцентная булка R2-D3", 988},
                 {"Краторная булка N-200i", 1255}

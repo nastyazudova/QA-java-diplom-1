@@ -6,7 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 public class IngredientTypeTest {
     @Test
-    public void IngredientTypeNamesTest(){
+    public void ingredientTypeNamesTest(){
         assertEquals("SAUCE", IngredientType.SAUCE.name());
         assertEquals("FILLING", IngredientType.FILLING.name());
     }
