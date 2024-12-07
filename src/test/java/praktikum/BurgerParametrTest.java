@@ -1,14 +1,21 @@
 package praktikum;
 
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
 public class BurgerParametrTest {
+    @Rule
+    public MockitoRule rule = MockitoJUnit.rule();
+
     private static final double DELTA = 1e-15;
     Burger burger;
 
@@ -48,15 +55,19 @@ public class BurgerParametrTest {
     @Test
     public void getPriceTest(){
         burger = new Burger();
-        bun = new Bun(bunName, bunPrice);
-        sauce = new Ingredient(IngredientType.SAUCE, sauceName, saucePrice);
-        filling = new Ingredient(IngredientType.FILLING, fillingName, fillingPrice);
+
+        Mockito.when(bun.getPrice()).thenReturn(bunPrice);
         burger.setBuns(bun);
+
+        Mockito.when(sauce.getPrice()).thenReturn(saucePrice);
         burger.addIngredient(sauce);
+
+        Mockito.when(filling.getPrice()).thenReturn(fillingPrice);
         burger.addIngredient(filling);
+
         float actual = burger.getPrice();
         System.out.println("actual: " + actual);
-        float expected = bun.getPrice() * 2 + sauce.price + filling.price;
+        float expected = bun.getPrice() * 2 + sauce.getPrice() + filling.getPrice();
         System.out.println("expected: " + expected);
         assertEquals(expected, actual, DELTA);
     }

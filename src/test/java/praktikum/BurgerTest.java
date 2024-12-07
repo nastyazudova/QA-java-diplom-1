@@ -12,6 +12,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(MockitoJUnitRunner.class)
 public class BurgerTest {
 
+    private static final double DELTA = 1e-15;
 
     @Mock
     private Bun bun;
@@ -94,6 +95,25 @@ public class BurgerTest {
     }
 
 
+    @Test
+    public void getPriceTest(){
+        Burger burger = new Burger();
+
+        Mockito.when(bun.getPrice()).thenReturn(Float.valueOf("1225"));
+        burger.setBuns(bun);
+
+        Mockito.when(sauce.getPrice()).thenReturn(Float.valueOf("15"));
+        burger.addIngredient(sauce);
+
+        Mockito.when(filling.getPrice()).thenReturn(Float.valueOf("300"));
+        burger.addIngredient(filling);
+
+        float actual = burger.getPrice();
+        System.out.println("actual: " + actual);
+        float expected = bun.getPrice() * 2 + sauce.getPrice() + filling.getPrice();
+        System.out.println("expected: " + expected);
+        assertEquals(expected, actual, DELTA);
+    }
 
 
 }
